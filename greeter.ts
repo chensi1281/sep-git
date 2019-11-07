@@ -130,7 +130,7 @@ let sum = sumMatrix([[1,2],[3,4],[5,6]]);
 console.log(sum);
 */
 
-
+/*
 const numLivesForCat = 9;
 const kitty = {
     name:"Aurora",
@@ -197,3 +197,68 @@ let newro = ro as number[];
 newro[0]=12;
 console.log(newro); // [12,2,3,4,5]
 console.log(ro);  // [12,2,3,4,5]
+*/
+
+interface SquareConfig {
+    color?:string;
+    width?:number;
+    [propName:string]:any; //字符串索引签名
+}
+function createSquare(config:SquareConfig){
+    console.log("abcdefg");
+}
+
+// let mySquare = createSquare({colour:"red",width:100});
+// 直接使用时，对象字面量存在任何“目标类型”不包含的属性时，会报错
+
+// 【对象字面量中存在任何“目标类型”不包含的属性】处理方法：
+// 1、使用类型断言
+// let mySquare = createSquare({colour:"red",width:100} as SquareConfig);
+// 2、添加一个字符串索引签名：使用时必须确定该对象可能具有某些作为特殊用途使用的额外属性
+// [propName:string]:any;
+// 3、将对象复制给另外一个变量
+// let squareOptions = { colour:"red",width:100};
+// let mySquare = createSquare(squareOptions);
+
+// 函数类型
+interface SearchFunc{
+    (source:string,subString:string):boolean;
+}
+let mySearch:SearchFunc;
+mySearch = function (src:string,sub:string):boolean{
+    // 函数类型的类型检查中参数名不需要和接口中定义的名字相匹配
+    // 只要对应位置上的参数类型是兼容的即可
+    // 不想指定类型也可以，typescript的类型系统会推断出参数类型
+    let result = src.search(sub);
+    return result>-1
+}
+
+//可索引的类型
+interface StringArray{
+    [index:number]:string;
+}
+let myArray:StringArray;
+myArray=["bob","fred"];
+let myStr:string=myArray[0];
+
+interface ClockInterface{
+    currentTime:Date;
+    setTime(d:Date);
+}
+class Clock implements ClockInterface{
+    currentTime:Date;
+    setTime(d:Date){
+        this.currentTime = d
+    }
+    constructor(h:number,m:number){};
+}
+
+
+
+
+
+
+
+
+
+
