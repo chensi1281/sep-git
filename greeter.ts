@@ -197,3 +197,6 @@ let newro = ro as number[];
 newro[0]=12;
 console.log(newro); // [12,2,3,4,5]
 console.log(ro);  // [12,2,3,4,5]
+
+
+// this i a a 
